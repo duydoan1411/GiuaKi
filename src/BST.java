@@ -15,9 +15,6 @@ public class BST {
         }
         return root;
     }
-    void printBSTLRN(Node root){
-        printLRN(root);
-    }
 
     void printLRN(Node root){
         if (root != null) {
@@ -26,10 +23,6 @@ public class BST {
             System.out.print(root.value + " ");
         }
     }
-    void printBSTLNR(Node root){
-        printLNR(root);
-    }
-
     void printLNR(Node root){
         if (root != null) {
             printLNR(root.left);
@@ -98,31 +91,34 @@ public class BST {
     }
     public static void main(String[] args) {
         BST tree = new BST();
-        String integerString = "50 30 20 40 70 60 80";
+        String integerString = "10 15 50 23 72 12 20";
         System.out.println("Chuoi so nguyen: "+integerString);
         System.out.println("Cau 1.2: ");
         string2Array(tree, integerString);
         System.out.print("Duyet cay theo left right node: ");
-        tree.printBSTLRN(tree.root);
+        tree.printLRN(tree.root);
         System.out.println("\n \nCau 1.3: ");
-        int keyValue = 70;
+        int keyValue = 50;
         if (tree.findKey(keyValue) != null){
             System.out.print("Ton tai khoa "+keyValue);
-            System.out.print("Cac khoa ben phai khoa "+keyValue+": ");
-            tree.printBSTLRN(tree.findKey(keyValue).right);
+            if (tree.findKey(keyValue).right != null)
+                System.out.print("\nCac khoa ben phai khoa "+keyValue+": ");
+            else
+                System.out.print("\nKhong co khoa nao ben phai khoa "+keyValue);
+            tree.printLRN(tree.findKey(keyValue).right);
         }else {
             System.out.print("Khong ton tai khoa "+keyValue);
         }
         System.out.println("\n \nCau 1.4: ");
         System.out.print("Duyet cay theo left node right: ");
-        tree.printBSTLNR(tree.root);
+        tree.printLNR(tree.root);
         System.out.println("\n \nCau 1.5: ");
-        int keyValue2 = 50;
+        int keyValue2 = 20;
         if (tree.findKey(keyValue2) != null){
             System.out.print("Ton tai khoa "+keyValue2);
             tree.deleteValue(keyValue2);
             System.out.print("\nDuyet cay theo left right node sau khi xoa: ");
-            tree.printBSTLRN(tree.root);
+            tree.printLRN(tree.root);
         }else {
             System.out.print("Khong ton tai khoa "+keyValue2);
         }
